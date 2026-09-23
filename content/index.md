@@ -6,7 +6,7 @@ title: Math in Computer Science
 
 这是从 Obsidian 笔记自动发布的课程笔记网站。
 
-> 图片已在公网隐藏；本机 Obsidian 仍可查看原图。
+> 公网版本不发布图片。
 
 ## Notes
 

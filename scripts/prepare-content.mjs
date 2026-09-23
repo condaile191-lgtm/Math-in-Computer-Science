@@ -29,23 +29,18 @@ function isMarkdownNote(name) {
 
 function hideImagesForPublicSite(markdown) {
   let hidden = false
-  const marker = "**[图片已在公网隐藏：本机 Obsidian 仍可查看原图]**"
-
-  // Hide Obsidian image embeds: ![[...]]
+  // Remove Obsidian image embeds from the public site: ![[...]]
   markdown = markdown.replace(/!\[\[[^\]]+\]\]/g, () => {
     hidden = true
-    return marker
+    return ""
   })
 
   // Hide standard Markdown image embeds: ![alt](path)
   markdown = markdown.replace(/!\[[^\]]*\]\([^\)]+\)/g, () => {
     hidden = true
-    return marker
+    return ""
   })
 
-  if (hidden && !markdown.includes("public-images-hidden: true")) {
-    return `<!-- public-images-hidden: true -->\n\n${markdown}`
-  }
   return markdown
 }
 
@@ -69,8 +64,9 @@ async function main() {
 
   notes.sort((a, b) => a.localeCompare(b, "zh-CN"))
   const links = notes.map((name) => `- [[${name.replace(/\.md$/i, "")}]]`).join("\n")
-  const index = `---\ntitle: Math in Computer Science\n---\n\n# Math in Computer Science\n\n这是从 Obsidian 笔记自动发布的课程笔记网站。\n\n> 图片已在公网隐藏；本机 Obsidian 仍可查看原图。\n\n## Notes\n\n${links}\n`
+  const index = `---\ntitle: Math in Computer Science\n---\n\n# Math in Computer Science\n\n这是从 Obsidian 笔记自动发布的课程笔记网站。\n\n> 公网版本不发布图片。\n\n## Notes\n\n${links}\n`
   await fs.writeFile(path.join(contentDir, "index.md"), index, "utf8")
 }
 
 await main()
+
