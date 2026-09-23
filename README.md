@@ -1,4 +1,4 @@
-﻿# Math in Computer Science
+# Math in Computer Science
 
 Obsidian notes published as a Quartz site on GitHub Pages.
 
