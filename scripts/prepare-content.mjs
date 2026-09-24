@@ -64,9 +64,11 @@ async function main() {
 
   notes.sort((a, b) => a.localeCompare(b, "zh-CN"))
   const links = notes.map((name) => `- [[${name.replace(/\.md$/i, "")}]]`).join("\n")
-  const index = `---\ntitle: Math in Computer Science\n---\n\n# Math in Computer Science\n\n这是从 Obsidian 笔记自动发布的课程笔记网站。\n\n> 公网版本不发布图片。\n\n## Notes\n\n${links}\n`
+  const index = `---\ntitle: Math in Computer Science\n---\n\n# Math in Computer Science\n\n这是从 Obsidian 笔记自动发布的课程笔记网站。\n\n## Notes\n\n${links}\n`
   await fs.writeFile(path.join(contentDir, "index.md"), index, "utf8")
 }
 
 await main()
+
+
 
